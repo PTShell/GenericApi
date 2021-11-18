@@ -1,9 +1,10 @@
 package com.ptshell.genericapi.ui.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 
-public abstract class BaseActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
