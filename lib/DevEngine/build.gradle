@@ -1,0 +1,64 @@
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
+apply plugin: 'kotlin-kapt'
+
+android {
+    namespace "dev.engine"
+
+    defaultConfig {
+        versionCode versions.dev_engine_versionCode
+        versionName versions.dev_engine_versionName
+        // DevEngine Module Version
+        buildConfigField "int", "DevEngine_VersionCode", "${versions.dev_engine_versionCode}"
+        buildConfigField "String", "DevEngine_Version", "\"${versions.dev_engine_versionName}\""
+        // DevApp Module Version
+        buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+        buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+    }
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+
+    // ===================
+    // = Engine 具体实现库 =
+    // ===================
+
+    // Glide 图片加载框架 https://github.com/bumptech/glide
+    api deps.lib.glide
+    kapt deps.lib.glide_compiler
+    // Gson https://github.com/google/gson
+    api deps.lib.gson
+    // Fastjson2 https://github.com/alibaba/fastjson2
+    api deps.lib.fastjson2_android
+    // 基于 mmap 的高性能通用 key-value 组件 https://github.com/Tencent/MMKV/blob/master/README_CN.md
+    api deps.lib.mmkv
+    // Luban 鲁班图片压缩 https://github.com/Curzibn/Luban
+    api deps_split.lib.luban
+    // 二维码 ZXing https://github.com/zxing/zxing
+    api deps_split.lib.zxing_code
+    // Android 平台下的图片选择器 https://github.com/LuckSiege/PictureSelector
+    api deps_split.lib.pictureSelector
+
+    // =============
+    // = DevEngine =
+    // =============
+
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_assist
+    } else {
+        // 编译时使用
+        api project(':DevAssist')
+    }
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

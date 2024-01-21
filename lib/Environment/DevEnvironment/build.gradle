@@ -1,0 +1,35 @@
+apply from: rootProject.file(files.lib_app_gradle)
+
+android {
+    namespace "dev.environment"
+
+    defaultConfig {
+        versionCode versions.dev_environment_versionCode
+        versionName versions.dev_environment_version
+        // DevEnvironment Module Version
+        buildConfigField "int", "DevEnvironment_VersionCode", "${versions.dev_environment_versionCode}"
+        buildConfigField "String", "DevEnvironment_Version", "\"${versions.dev_environment_version}\""
+    }
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_environment_base
+    } else {
+        // 编译时使用
+        api project(':DevEnvironmentBase')
+    }
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

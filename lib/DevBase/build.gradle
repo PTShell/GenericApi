@@ -1,0 +1,49 @@
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
+apply from: rootProject.file(files.unified_use_view_binding_gradle)
+
+android {
+    namespace "dev.base"
+
+    defaultConfig {
+        versionCode versions.dev_base_versionCode
+        versionName versions.dev_base_versionName
+        // DevBase Module Version
+        buildConfigField "int", "DevBase_VersionCode", "${versions.dev_base_versionCode}"
+        buildConfigField "String", "DevBase_Version", "\"${versions.dev_base_versionName}\""
+        // DevApp Module Version
+        buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+        buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+    }
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    api deps.kotlin.stdlib
+    api deps.kotlin.core
+    api deps.kotlin.coroutines
+    api deps.kotlin.lifecycle_runtime
+    api deps.kotlin.lifecycle_common_java8
+    api deps.kotlin.fragment
+    api deps.kotlin.activity
+    api deps.androidx.design
+    api deps.androidx.appcompat
+
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_app
+    } else {
+        // 编译时使用
+        api project(':DevApp')
+    }
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

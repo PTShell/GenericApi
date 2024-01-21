@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dev.utils">
+
+    <application>
+
+        <activity
+            android:name="dev.utils.app.permission.PermissionUtils$PermissionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:multiprocess="true"
+            android:theme="@style/DevActivityTranslucentTheme"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+
+        <activity
+            android:name="dev.utils.app.activity_result.DefaultActivityResult$ResultActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:multiprocess="true"
+            android:theme="@style/DevActivityTranslucentTheme"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
+
+        <provider
+            android:name="dev.DevUtils$FileProviderDevApp"
+            android:authorities="${applicationId}.devapp.provider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            android:multiprocess="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/dev_app_provider_paths" />
+        </provider>
+    </application>
+</manifest>

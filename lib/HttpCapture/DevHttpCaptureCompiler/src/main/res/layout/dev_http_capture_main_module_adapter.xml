@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/vid_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dev_http_capture_adapter_main_title_height"
+        android:background="@color/dev_http_capture_adapter_main_bg_color"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/dev_http_capture_adapter_main_padding_lr"
+        android:paddingRight="@dimen/dev_http_capture_adapter_main_padding_lr"
+        android:textColor="@color/dev_http_capture_adapter_main_title_text_color"
+        android:textSize="@dimen/dev_http_capture_adapter_main_title_text_size"
+        tools:text="@string/dev_http_capture_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dev_http_capture_adapter_main_divider_height"
+        android:background="@color/dev_http_capture_adapter_main_divider_color" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vid_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/dev_http_capture_main_module_list_adapter" />
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dev_http_capture_adapter_date_bg_color"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dev_http_capture_adapter_date_padding_lr"
+        android:paddingTop="@dimen/dev_http_capture_adapter_date_padding_tb"
+        android:paddingRight="@dimen/dev_http_capture_adapter_date_padding_lr"
+        android:paddingBottom="@dimen/dev_http_capture_adapter_date_padding_tb">
+
+        <TextView
+            android:id="@+id/vid_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textColor="@color/dev_http_capture_adapter_date_title_text_color"
+            android:textSize="@dimen/dev_http_capture_adapter_date_title_text_size"
+            tools:text="@string/dev_http_capture_title" />
+
+        <TextView
+            android:id="@+id/vid_function_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dev_http_capture_adapter_date_function_margin_top"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:textColor="@color/dev_http_capture_adapter_date_function_text_color"
+            android:textSize="@dimen/dev_http_capture_adapter_date_function_text_size"
+            android:visibility="gone"
+            tools:text="@string/dev_http_capture_url_function"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dev_http_capture_adapter_date_divider_height"
+        android:background="@color/dev_http_capture_adapter_date_divider_color" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/vid_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/dev_http_capture_date_module_list_item_adapter" />
+</LinearLayout>

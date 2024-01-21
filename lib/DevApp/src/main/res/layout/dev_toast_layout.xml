@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/vid_toast_ll"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="false"
+    android:gravity="center"
+    android:orientation="horizontal"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/vid_toast_iv"
+        android:layout_width="@dimen/dev_toast_icon_size"
+        android:layout_height="@dimen/dev_toast_icon_size"
+        android:layout_marginEnd="@dimen/dev_toast_icon_margin_end"
+        android:layout_marginRight="@dimen/dev_toast_icon_margin_right" />
+
+    <TextView
+        android:id="@+id/vid_toast_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

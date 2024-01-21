@@ -1,2 +1,93 @@
-include ':app'
-rootProject.name = "GenericApi"
+// =======
+// = Lib =
+// =======
+
+def libs = [
+        "DevApp",
+        "DevAssist",
+        "DevBase",
+        "DevBaseMVVM",
+        "DevMVVM",
+        "DevEngine",
+        "DevHttpCapture",
+        "DevHttpManager",
+        "DevRetrofit",
+        "DevWidget",
+        "DevJava",
+]
+
+libs.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "lib/$it")
+}
+
+def libs_compiler = [
+        "DevHttpCaptureCompiler",
+        "DevHttpCaptureCompilerRelease",
+]
+
+libs_compiler.forEach {
+    include(":$it")
+    if (it.startsWith("DevHttpCapture")) {
+        project(":$it").projectDir = new File(rootDir, "lib/HttpCapture/$it")
+    }
+}
+
+def environment_libs = [
+        "DevEnvironment",
+        "DevEnvironmentBase",
+        "DevEnvironmentCompiler",
+        "DevEnvironmentCompilerRelease",
+]
+
+environment_libs.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "lib/Environment/$it")
+}
+
+// =================
+// = Local Modules =
+// =================
+
+def local_modules = [
+        "DevBaseView",
+        "DevOther",
+        "DevSKU",
+]
+
+local_modules.forEach {
+    def itName = it
+
+    if (itName.indexOf("/") != -1) {
+        itName = itName.substring(
+                itName.lastIndexOf("/") + 1,
+                itName.length()
+        )
+    }
+    include(":$itName")
+    project(":$itName").projectDir = new File(rootDir, "lib/LocalModules/$it")
+}
+
+// ===============
+// = Application =
+// ===============
+
+def applications = [
+
+        // ========================
+        // = DevUtils Demo 演示应用 =
+        // ========================
+
+        "DevUtilsApp",
+
+        // ==========
+        // = 其他项目 =
+        // ==========
+
+        "DevBaseDemo",
+]
+
+applications.forEach {
+    include(":$it")
+    project(":$it").projectDir = new File(rootDir, "application/$it")
+}

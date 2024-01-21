@@ -1,0 +1,34 @@
+apply from: rootProject.file(files.lib_java_gradle)
+
+version versions.dev_environment_compiler_version
+
+compileJava {
+    sourceCompatibility versions.javaVersion_str
+    targetCompatibility versions.javaVersion_str
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    api deps.aop.javapoet
+    compileOnly deps.aop.auto_service
+    annotationProcessor deps.aop.auto_service
+
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_environment_base
+    } else {
+        // 编译时使用
+        api project(':DevEnvironmentBase')
+    }
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_java)
+//apply from: rootProject.file(files.sonatype_upload_java)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_java)
+}

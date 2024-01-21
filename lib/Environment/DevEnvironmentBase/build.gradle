@@ -1,0 +1,20 @@
+apply from: rootProject.file(files.lib_java_gradle)
+
+version versions.dev_environment_base_version
+
+compileJava {
+    sourceCompatibility versions.javaVersion_str
+    targetCompatibility versions.javaVersion_str
+}
+
+// 是否发布版本
+def isPublishing = false
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_java)
+//apply from: rootProject.file(files.sonatype_upload_java)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_java)
+}

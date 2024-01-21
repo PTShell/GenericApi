@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="dev_http_capture_title">DevHttpCapture</string>
+    <integer name="dev_http_capture_query_item_scroll_delay">30</integer>
+
+    <string name="dev_http_capture_details_title">Http Capture Details</string>
+    <string name="dev_http_capture_querying">Loading, Please Wait&#8230;</string>
+    <string name="dev_http_capture_query_complete">Data Refresh Complete</string>
+    <string name="dev_http_capture_query_no_data">No Http Capture Data</string>
+    <string name="dev_http_capture_copy">Copy</string>
+    <string name="dev_http_capture_copy_success">Copy Success</string>
+    <string name="dev_http_capture_cancel">cancel</string>
+    <string name="dev_http_capture_url_function">Url Function</string>
+    <string name="dev_http_capture_request_method">Request Method</string>
+    <string name="dev_http_capture_request_url">Request Url</string>
+    <string name="dev_http_capture_request_header">Request Header</string>
+    <string name="dev_http_capture_request_body">Request Body</string>
+    <string name="dev_http_capture_response_status">Response Status</string>
+    <string name="dev_http_capture_response_header">Response Header</string>
+    <string name="dev_http_capture_response_body">Response Body</string>
+    <string name="dev_http_capture_data_type_all">all</string>
+    <string name="dev_http_capture_data_type_0_9">00&#8211;09 minute</string>
+    <string name="dev_http_capture_data_type_10_19">10&#8211;19 minute</string>
+    <string name="dev_http_capture_data_type_20_29">20&#8211;29 minute</string>
+    <string name="dev_http_capture_data_type_30_39">30&#8211;39 minute</string>
+    <string name="dev_http_capture_data_type_40_49">40&#8211;49 minute</string>
+    <string name="dev_http_capture_data_type_50_59">50&#8211;59 minute</string>
+    <string name="dev_http_capture_group_type_time">capture time</string>
+    <string name="dev_http_capture_group_type_url">request url</string>
+    <string name="dev_http_capture_options_data">Data Sources</string>
+    <string name="dev_http_capture_options_group">Group type</string>
+</resources>

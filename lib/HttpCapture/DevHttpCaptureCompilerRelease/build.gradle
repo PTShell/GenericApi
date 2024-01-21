@@ -1,0 +1,34 @@
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
+
+android {
+    namespace "dev.capture.compiler"
+
+    defaultConfig {
+        versionCode versions.dev_http_capture_versionCode
+        versionName versions.dev_http_capture_compiler_release_version
+    }
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_assist
+        api deps.dev.dev_http_capture
+    } else {
+        // 编译时使用
+        api project(':DevAssist')
+        api project(':DevHttpCapture')
+    }
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

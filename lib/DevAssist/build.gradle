@@ -1,0 +1,38 @@
+apply from: rootProject.file(files.lib_app_gradle)
+
+android {
+    namespace "dev.assist"
+
+    defaultConfig {
+        versionCode versions.dev_assist_versionCode
+        versionName versions.dev_assist_versionName
+        // DevAssist Module Version
+        buildConfigField "int", "DevAssist_VersionCode", "${versions.dev_assist_versionCode}"
+        buildConfigField "String", "DevAssist_Version", "\"${versions.dev_assist_versionName}\""
+        // DevApp Module Version
+        buildConfigField "int", "DevApp_VersionCode", "${versions.dev_app_versionCode}"
+        buildConfigField "String", "DevApp_Version", "\"${versions.dev_app_versionName}\""
+    }
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    if (isPublishing) {
+        // 打包时使用
+        api deps.dev.dev_app
+    } else {
+        // 编译时使用
+        api project(':DevApp')
+    }
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}

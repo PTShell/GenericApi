@@ -1,0 +1,34 @@
+apply from: rootProject.file(files.lib_app_kotlin_gradle)
+apply plugin: 'kotlin-parcelize'
+
+android {
+    namespace "dev.retrofit"
+
+    defaultConfig {
+        versionCode versions.dev_retrofit_versionCode
+        versionName versions.dev_retrofit_versionName
+        // DevRetrofit Module Version
+        buildConfigField "int", "DevRetrofit_VersionCode", "${versions.dev_retrofit_versionCode}"
+        buildConfigField "String", "DevRetrofit_Version", "\"${versions.dev_retrofit_versionName}\""
+    }
+}
+
+// 是否发布版本
+def isPublishing = false
+
+dependencies {
+    api deps.kotlin.core
+    api deps.kotlin.coroutines
+    api deps.kotlin.lifecycle_runtime
+    api deps.kotlin.lifecycle_viewmodel
+    api deps.kotlin.lifecycle_livedata
+}
+
+// gradlew clean
+// gradlew install
+// gradlew bintrayUpload
+//apply from: rootProject.file(files.bintray_upload_android)
+//apply from: rootProject.file(files.sonatype_upload_android)
+if (isPublishing) {
+    apply from: rootProject.file(files.sonatype_upload_android)
+}
